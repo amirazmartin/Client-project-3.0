@@ -1,0 +1,346 @@
+/* General reset for margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Dark Mode Default Variables */
+:root {
+    --background-color: #121212;
+    --general-text-color: #e0e0e0;
+    --header-bg-color: #1e1e1e;
+    --header-text-color: #f9f9f9;
+    --table-bg-color: #1e1e1e;
+    --table-text-color: #dddddd;
+    --link-color: #a2cdfd;
+    --highlight-color: #444444;
+    --card-bg-color: #333333;
+    --summary-bg-color: #555555;
+    --border-color: #ffffff;
+}
+
+/* Light Mode Overrides */
+body.light-mode {
+    --background-color: #ffffff;
+    --general-text-color: #1b1a1a;
+    --header-bg-color: #f0f0f0;
+    --header-text-color: #000000;
+    --table-bg-color: #f0f0f0;
+    --table-text-color: #2a2a2a;
+    --link-color: #0056b3;
+    --highlight-color: #b0afaf;
+    --card-bg-color: #f8f8f8;
+    --summary-bg-color: #d7d7d7;
+    --border-color: #121212; /* Opposite to light background */
+}
+
+/* Body Styling */
+body {
+    background-color: var(--background-color);
+    color: var(--general-text-color);
+    font-family: Arial, sans-serif;
+}
+
+/* Header Styling */
+header {
+    position: sticky;
+    top: 0;
+    background-color: var(--header-bg-color);
+    color: var(--header-text-color);
+    padding: 15px;
+    text-align: center;
+    font-size: 20px;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Athlete Results Table */
+#athlete-results {
+    padding: 20px;
+}
+
+.table-container {
+    overflow-x: auto;
+    display: block;
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+    background-color: var(--table-bg-color);
+    animation: slide-in 0.8s ease-out forwards;
+}
+
+/* Table Headers */
+thead th {
+    position: sticky;
+    top: 0;
+    background-color: var(--highlight-color);
+    color: var(--table-text-color);
+    padding: 12px;
+}
+
+/* Table Row Alternating Colors */
+tbody tr:nth-child(odd) { background-color: var(--card-bg-color); }
+tbody tr:nth-child(even) { background-color: var(--highlight-color); }
+
+/* Collapsible Cards in Table */
+details {
+    background-color: var(--card-bg-color);
+    color: var(--table-text-color);
+    margin: 8px 0;
+    border-radius: 8px;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+}
+
+details[open] summary {
+    background-color: var(--summary-bg-color);
+    padding: 8px;
+}
+
+/* Athlete Summary Styling */
+.athlete-summary {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 0;
+    color: var(--table-text-color);
+}
+
+
+/* Athlete Profile Image */
+.athlete-summary img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 3px solid var(--border-color); /* Use variable for border color */
+}
+
+.athlete-details p {
+    font-size: 0.9em;
+    margin: 5px 0;
+    color: var(--table-text-color);
+}
+
+/* Link Styling */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Mobile Styling */
+@media (width: 768px) {
+    .athlete-summary {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .athlete-summary img {
+        margin-bottom: 8px;
+    }
+}
+
+/* Progress Bar Container */
+.progress-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+    width: 100%;
+}
+
+/* Progress Bar Base */
+.progress-bar {
+    position: relative;
+    width: 100%;
+    height: 20px;
+    background-color: var(--highlight-color); /* Darker background color */
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Dynamic Fill */
+.progress-fill {
+    height: 100%;
+    background-color: var(--link-color); /* Primary color for the fill */
+    width: 0;
+    transition: width 1s ease-in-out; /* Smooth animation */
+}
+
+/* Progress Label */
+.progress-label {
+    font-size: 14px;
+    color: var(--general-text-color);
+}
+
+/* Fade-in Animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Pulse Animation for FABs */
+.fab {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #dc03b4;
+    color: #fff;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+.fab-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1001;
+}
+
+.fab:hover {
+    background-color: #8d009d;
+    transform: scale(1.1);
+}
+
+/* Pulse Animation Keyframes */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Slide-In Animation */
+@keyframes slide-in {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Fade-In Keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Applying animations on visibility change */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    visibility: hidden;
+}
+
+.fade-in-section-visible {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+tbody tr {
+    animation: bounce-in-mobile 0.4s ease-out;
+}
+
+@keyframes bounce-in-mobile {
+    0% {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+a {
+    color: var(--link-color);
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+a:hover {
+    color: #ff8c42; /* Slightly warmer color */
+    transform: scale(1.05);
+}
+a {
+    color: var(--link-color);
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+a:hover {
+    color: #ff8c42; /* Slightly warmer color */
+    transform: scale(1.05);
+}.fade-in-section {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    visibility: hidden;
+}
+
+.fade-in-section-visible {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+@media (max-width: 768px) {
+    tbody tr {
+        animation: bounce-in-mobile 0.4s ease-in-out;
+    }
+}
+
+@keyframes bounce-in-mobile {
+    0% {
+        transform: scale(0.98);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.02);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+/* for icons in athelete section*/
+.extra-info i {
+    color: var(--link-color); /* Use a theme color */
+    margin-right: 3 px;        /* Space between icon and text */
+    font-size: 0.5 em;         /* Adjust icon size if needed */
+}
+
