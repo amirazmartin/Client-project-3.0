@@ -1,4 +1,6 @@
-/* General reset for margin and padding */
+/* ========== Reset and Root Variables ========== */
+
+/* General reset for margin, padding, and box-sizing */
 * {
     margin: 0;
     padding: 0;
@@ -35,6 +37,8 @@ body.light-mode {
     --border-color: #121212; /* Opposite to light background */
 }
 
+/* ========== Global Styling ========== */
+
 /* Body Styling */
 body {
     background-color: var(--background-color);
@@ -56,7 +60,21 @@ header {
     animation: fadeIn 1s ease-in-out;
 }
 
-/* Athlete Results Table */
+/* Link Styling */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #ff8c42; /* Warmer color */
+    transform: scale(1.05);
+}
+
+/* ========== Athlete Results Table ========== */
+
 #athlete-results {
     padding: 20px;
 }
@@ -88,7 +106,8 @@ thead th {
 tbody tr:nth-child(odd) { background-color: var(--card-bg-color); }
 tbody tr:nth-child(even) { background-color: var(--highlight-color); }
 
-/* Collapsible Cards in Table */
+/* ========== Collapsible Cards in Table ========== */
+
 details {
     background-color: var(--card-bg-color);
     color: var(--table-text-color);
@@ -113,7 +132,6 @@ details[open] summary {
     color: var(--table-text-color);
 }
 
-
 /* Athlete Profile Image */
 .athlete-summary img {
     width: 80px;
@@ -129,27 +147,27 @@ details[open] summary {
     color: var(--table-text-color);
 }
 
-/* Link Styling */
-a {
-    color: var(--link-color);
-    text-decoration: none;
+/* for icons in athlete section */
+.extra-info i {
+    color: var(--link-color); /* Theme color */
+    margin-right: 3px; /* Space between icon and text */
+    font-size: 0.5em;
 }
 
-a:hover {
-    text-decoration: underline;
-}
+/* ========== Responsive Styling for Larger Screens ========== */
 
-/* Mobile Styling */
-@media (width: 768px) {
+@media (min-width: 769px) {
     .athlete-summary {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        align-items: center;
     }
-    
+
     .athlete-summary img {
-        margin-bottom: 8px;
+        margin-bottom: 0;
     }
 }
+
+/* ========== Progress Bar Styling ========== */
 
 /* Progress Bar Container */
 .progress-container {
@@ -165,7 +183,7 @@ a:hover {
     position: relative;
     width: 100%;
     height: 20px;
-    background-color: var(--highlight-color); /* Darker background color */
+    background-color: var(--highlight-color);
     border-radius: 10px;
     overflow: hidden;
 }
@@ -173,9 +191,9 @@ a:hover {
 /* Dynamic Fill */
 .progress-fill {
     height: 100%;
-    background-color: var(--link-color); /* Primary color for the fill */
+    background-color: var(--link-color);
     width: 0;
-    transition: width 1s ease-in-out; /* Smooth animation */
+    transition: width 1s ease-in-out;
 }
 
 /* Progress Label */
@@ -184,7 +202,62 @@ a:hover {
     color: var(--general-text-color);
 }
 
-/* Fade-in Animation */
+/* ========== Animation Definitions ========== */
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes slide-in {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes bounce-in-mobile {
+    0% {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Applying animations on visibility change */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    visibility: hidden;
+}
+
+.fade-in-section-visible {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
 .fade-in {
     opacity: 0;
     transform: translateY(20px);
@@ -196,7 +269,8 @@ a:hover {
     transform: translateY(0);
 }
 
-/* Pulse Animation for FABs */
+/* ========== Floating Action Button (FAB) ========== */
+
 .fab {
     width: 80px;
     height: 80px;
@@ -226,121 +300,3 @@ a:hover {
     background-color: #8d009d;
     transform: scale(1.1);
 }
-
-/* Pulse Animation Keyframes */
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-}
-
-/* Slide-In Animation */
-@keyframes slide-in {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-/* Fade-In Keyframes */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-/* Applying animations on visibility change */
-.fade-in-section {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    visibility: hidden;
-}
-
-.fade-in-section-visible {
-    opacity: 1;
-    transform: translateY(0);
-    visibility: visible;
-}
-
-tbody tr {
-    animation: bounce-in-mobile 0.4s ease-out;
-}
-
-@keyframes bounce-in-mobile {
-    0% {
-        transform: translateY(10px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-a {
-    color: var(--link-color);
-    transition: color 0.3s ease, transform 0.2s ease;
-}
-
-a:hover {
-    color: #ff8c42; /* Slightly warmer color */
-    transform: scale(1.05);
-}
-a {
-    color: var(--link-color);
-    transition: color 0.3s ease, transform 0.2s ease;
-}
-
-a:hover {
-    color: #ff8c42; /* Slightly warmer color */
-    transform: scale(1.05);
-}.fade-in-section {
-    opacity: 0;
-    transform: translateY(15px);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    visibility: hidden;
-}
-
-.fade-in-section-visible {
-    opacity: 1;
-    transform: translateY(0);
-    visibility: visible;
-}
-
-@media (width: 768px) {
-    tbody tr {
-        animation: bounce-in-mobile 0.4s ease-in-out;
-    }
-}
-
-@keyframes bounce-in-mobile {
-    0% {
-        transform: scale(0.98);
-        opacity: 0;
-    }
-    60% {
-        transform: scale(1.02);
-        opacity: 0.8;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-/* for icons in athelete section*/
-.extra-info i {
-    color: var(--link-color); /* Use a theme color */
-    margin-right: 3 px;        /* Space between icon and text */
-    font-size: 0.5 em;         /* Adjust icon size if needed */
-}
-
