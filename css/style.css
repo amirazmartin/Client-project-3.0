@@ -163,9 +163,9 @@ details[open] summary {
 
 /* for icons in athlete section */
 .extra-info i {
-    color: var(--link-color); /* Theme color */
+    font-size: 1.0em; /* Adjust size as needed */
+    color: var(--link-color); /* Optional: keeps color consistent */
     margin-right: 3px; /* Space between icon and text */
-    font-size: 0.5em;
 }
 
 /* ========== Responsive Styling for Larger Screens ========== */
