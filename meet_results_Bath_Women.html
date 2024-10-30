@@ -3,8 +3,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="../css/reset.css">
-   <link rel="stylesheet" href="../css/style.css">
+   <link rel="stylesheet" href="css/style.css">
    <title>Bret Clements Bath Invitational Womens 5000 Meters Class 1 Country Meet</title>
 </head>
 <body>
@@ -196,10 +195,162 @@
     </div>
 </section>
 
+<!-- Floating Action Buttons -->
+<div class="fab-container">
+   <button class="fab" onclick="filterData()">Filter</button>
+   <button class="fab" onclick="searchData()">Search</button>
+</div>
+
+<!--Table wrapper-->
+<div class="table-container">
+   <table>
+       <!-- Table content -->
+   </table>
+</div>
+
 <!-- Footer Section -->
 <footer>
    <p>&copy; Bret Clements Bath Invitational Womens 5000 Meters Class 1. All Rights Reserved.</p>
 </footer>
 
+
+<!-- JavaScript for collapsible functionality and dynamic progress bar animation -->
+<script>
+   // JavaScript for collapsible functionality
+   document.querySelectorAll('.collapsible-row').forEach(row => {
+       row.addEventListener('click', function () {
+           this.classList.toggle('expanded');
+       });
+   });
+
+   // Select all progress bars and set width based on 'data-performance' attribute
+document.querySelectorAll('.progress-bar').forEach(bar => {
+    const progress = bar.getAttribute('data-performance'); // Get performance value (e.g., 75 for 75%)
+    bar.querySelector('.progress-fill').style.width = `${progress}%`; // Set width to data-performance value
+});
+
+   // JavaScript to add active class on section transitions
+   const sections = document.querySelectorAll("section");
+
+   function revealSection() {
+       sections.forEach((section) => {
+           const sectionTop = section.getBoundingClientRect().top;
+           if (sectionTop < window.innerHeight * 0.75) {
+               section.classList.add("active");
+           }
+       });
+   }
+
+   window.addEventListener('scroll', () => {
+    document.querySelectorAll('section').forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        if (sectionTop < window.innerHeight * 0.75) {
+            section.classList.add('active');
+        }
+    });
+});
+   // JavaScript for Floating Action Buttons (FAB)
+   function filterData() {
+       alert("Filter functionality to be implemented.");
+   }
+
+   function searchData() {
+       alert("Search functionality to be implemented.");
+   }
+
+   // Apply Touch-Friendly "Hover" Effect on Athlete Name
+document.querySelectorAll('.athlete-info').forEach(info => {
+    info.addEventListener('click', function (event) {
+        // Prevent triggering the click repeatedly by toggling .active
+        this.classList.toggle('active');
+        
+        // Close other active details if necessary
+        document.querySelectorAll('.athlete-info').forEach(other => {
+            if (other !== this) {
+                other.classList.remove('active');
+            }
+        });
+        
+        // Stop event from bubbling up, in case there are other listeners
+        event.stopPropagation();
+    });
+});
+
+// Hide athlete details when tapping outside
+document.addEventListener('click', function (event) {
+    document.querySelectorAll('.athlete-info').forEach(info => {
+        if (!info.contains(event.target)) {
+            info.classList.remove('active');
+        }
+    });
+});
+// Toggle visibility of athlete details on name click
+document.querySelectorAll('.athlete-name').forEach(name => {
+    name.addEventListener('click', function (event) {
+        event.stopPropagation(); // Stop the click event from propagating
+        const athleteInfo = this.closest('.athlete-info');
+        
+        
+        // Toggle active class to show/hide details
+        athleteInfo.classList.toggle('active');
+        
+        // Optionally, close other active details if needed
+        document.querySelectorAll('.athlete-info').forEach(info => {
+            if (info !== athleteInfo) {
+                info.classList.remove('active');
+            }
+        });
+    });
+});
+
+// Toggle light and dark mode
+function toggleTheme() {
+    document.body.classList.toggle("light-mode");
+}
+
+// Add a button to toggle themes
+document.addEventListener("DOMContentLoaded", () => {
+    const themeToggleButton = document.createElement("button");
+    themeToggleButton.innerText = "Toggle Light/Dark Mode";
+    themeToggleButton.onclick = toggleTheme;
+    themeToggleButton.style.position = "fixed";
+    themeToggleButton.style.top = "10px";
+    themeToggleButton.style.right = "10px";
+    themeToggleButton.style.padding = "10px";
+    themeToggleButton.style.cursor = "pointer";
+    document.body.appendChild(themeToggleButton);
+});
+
+// Toggle light and dark mode
+function toggleTheme() {
+    document.body.classList.toggle("light-mode"); // Toggles the light-mode class on body
+    const isLightMode = document.body.classList.contains("light-mode");
+    localStorage.setItem("theme", isLightMode ? "light" : "dark"); // Save the theme preference
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "light") {
+        document.body.classList.add("light-mode");
+    }
+
+    // Create and style the toggle button
+    const themeToggleButton = document.createElement("button");
+    themeToggleButton.innerText = "Toggle Light/Dark Mode";
+    themeToggleButton.onclick = toggleTheme;
+    themeToggleButton.style.position = "fixed";
+    themeToggleButton.style.top = "20px";
+    themeToggleButton.style.right = "20px";
+    themeToggleButton.style.padding = "10px";
+    themeToggleButton.style.backgroundColor = "#333";
+    themeToggleButton.style.color = "#fff";
+    themeToggleButton.style.border = "none";
+    themeToggleButton.style.borderRadius = "5px";
+    themeToggleButton.style.cursor = "pointer";
+    themeToggleButton.style.zIndex = "1000";
+    document.body.appendChild(themeToggleButton);
+});
+
+</script>
 </body>
 </html>
