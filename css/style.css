@@ -139,6 +139,8 @@ details[open] summary {
     border-radius: 50%;
     margin-right: 10px;
     border: 3px solid var(--border-color); /* Use variable for border color */
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer; /* Indicates clickability */
 }
 
 .athlete-details p {
@@ -146,6 +148,18 @@ details[open] summary {
     margin: 5px 0;
     color: var(--table-text-color);
 }
+
+
+/* Enlarge slightly on hover */
+.athlete-summary img:hover {
+    transform: scale(1.25); /* Slightly larger on hover */
+}
+
+/* Increase size further when clicked */
+.athlete-summary img:active {
+    transform: scale(1.2); /* Larger on click */
+}
+
 
 /* for icons in athlete section */
 .extra-info i {
