@@ -275,7 +275,7 @@ details[open] summary {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background-color: #dc03b4;
+    background-color: #A20686;
     color: #fff;
     font-size: 12px;
     display: flex;
@@ -297,6 +297,6 @@ details[open] summary {
 }
 
 .fab:hover {
-    background-color: #8d009d;
+    background-color: #580449;
     transform: scale(1.1);
 }
